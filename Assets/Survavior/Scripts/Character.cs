@@ -22,7 +22,11 @@ public class Character : MonoBehaviour
         if (IsDead)
         {
             gameObject.SetActive(false);
+            OnDead();
         }
     }
     
+    protected virtual void OnDead()
+    {
+    }
 }

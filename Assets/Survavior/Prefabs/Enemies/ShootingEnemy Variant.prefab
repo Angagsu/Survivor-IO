@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6450114914696454757
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1938341948816532325, guid: 8ae73b653421a4d4694a1409b71ee35c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6367560908665664636, guid: cd947491a13509945aa1b644f9db3ef2,
+        type: 3}
+    - target: {fileID: 4061177730787784068, guid: 8ae73b653421a4d4694a1409b71ee35c,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 015da9aeb0ad2f544b8f8ea25b754580, type: 2}
+    - target: {fileID: 4889245335828949491, guid: 8ae73b653421a4d4694a1409b71ee35c,
+        type: 3}
+      propertyPath: m_Name
+      value: ShootingEnemy Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8641724085197010916, guid: 8ae73b653421a4d4694a1409b71ee35c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8641724085197010916, guid: 8ae73b653421a4d4694a1409b71ee35c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 8641724085197010916, guid: 8ae73b653421a4d4694a1409b71ee35c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 8641724085197010916, guid: 8ae73b653421a4d4694a1409b71ee35c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8641724085197010916, guid: 8ae73b653421a4d4694a1409b71ee35c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8641724085197010916, guid: 8ae73b653421a4d4694a1409b71ee35c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8641724085197010916, guid: 8ae73b653421a4d4694a1409b71ee35c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8641724085197010916, guid: 8ae73b653421a4d4694a1409b71ee35c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8641724085197010916, guid: 8ae73b653421a4d4694a1409b71ee35c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8641724085197010916, guid: 8ae73b653421a4d4694a1409b71ee35c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8641724085197010916, guid: 8ae73b653421a4d4694a1409b71ee35c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 318976253, guid: 8ae73b653421a4d4694a1409b71ee35c, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 8ae73b653421a4d4694a1409b71ee35c, type: 3}
+--- !u!1 &1898689377005964182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4889245335828949491, guid: 8ae73b653421a4d4694a1409b71ee35c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6450114914696454757}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8642227480917918276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898689377005964182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 500cc8412dfa51146b2f595dfd43515d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
+  maxHealth: 50
+  experiencePickup: {fileID: 3601612646442851666, guid: f9e0544ea6e80424fa94ec9e182dfebf,
+    type: 3}
+  shootInterval: 1
+  bulletPrefab: {fileID: 5071908135705404959, guid: 871f0f9b2b4275841bafc1d8b2b07b8c,
+    type: 3}
+  shootSpeed: 500

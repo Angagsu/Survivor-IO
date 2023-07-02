@@ -5,14 +5,15 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Player player;
-    [SerializeField] private Enemy[] enemies;
+    [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private GameObject gameOverPanel;
+
 
     void Update()
     {
         if (player.IsDead)
         {
-            foreach (var enemy in enemies)
+            foreach (var enemy in enemySpawner.SpawnedEnemies)
             {
                 enemy.enabled = false;
             }

@@ -1,11 +1,21 @@
 using UnityEngine;
 
+
 public class Damager : MonoBehaviour
 {
     [SerializeField] private float damage;
-    [SerializeField] private bool destroyOnHit;
+    [SerializeField] protected bool destroyOnHit;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        if (TryToDamage(collision) && destroyOnHit)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    protected bool TryToDamage(Collider2D collision)
     {
         bool hasHealth = collision.TryGetComponent<Character>(out var character);
         bool otherHealth = !collision.CompareTag(tag);
@@ -13,10 +23,9 @@ public class Damager : MonoBehaviour
         if (hasHealth && otherHealth)
         {
             character.TakeDamage(damage);
-            if (destroyOnHit)
-            {
-                Destroy(gameObject);
-            }
+            return true;
         }
+
+        return false;
     }
 }

@@ -13,8 +13,12 @@ public class Enemy : Character
     
     protected virtual void Update()
     {
-        Vector3 direction = (target.position - transform.position).normalized;
-        transform.Translate(direction * moveSpeed * Time.deltaTime);
+        if (target)
+        {
+            Vector3 direction = (target.position - transform.position).normalized;
+            transform.Translate(direction * moveSpeed * Time.deltaTime);
+        }
+        
     }
 
     protected override void OnDead()

@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+
 
 public class Player : Character
 {
@@ -6,14 +8,20 @@ public class Player : Character
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float shootSpeed;
     [SerializeField] private EnemySpawner enemySpawner;
+    [SerializeField] private UpgradesManager upgradesManager;
+    [SerializeField] private Camera cameraMain;
     [SerializeField] private int[] experiencesLevels;
 
     private float shootTimer;
     private int currentLevel;
     private int experience;
+    private const float bulletsInterval = 0.2f;
+    public int BulletsCount { get; set; } = 1;
+
 
     void Update()
     {
+        cameraMain.transform.position = new Vector3(transform.position.x, transform.position.y, cameraMain.transform.position.z);
         Move();
         Shoot();
     }
@@ -33,42 +41,40 @@ public class Player : Character
         if (shootTimer >= shootInterval)
         {
             shootTimer = 0;
+            StartCoroutine(ShootProcess());
+        }
+    }
 
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            Enemy nearestEnemy = FindNearestEnemy();
+    private IEnumerator ShootProcess()
+    {
+        for (int i = 0; i < BulletsCount; i++)
+        {
+            Enemy nearestEnemy = Helper.FindNearestEnemy(enemySpawner, transform);
 
             if (nearestEnemy)
             {
+                GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                 Vector3 direction = (nearestEnemy.transform.position - transform.position).normalized;
                 rb.AddForce(direction * shootSpeed);
             }
-        }
+
+            yield return new WaitForSeconds(bulletsInterval);
+        }  
     }
 
-    private Enemy FindNearestEnemy()
-    {
-        Enemy nearestEnemy = null;
-        float minDistance = float.MaxValue;
-
-        foreach ( var enemy in enemySpawner.SpawnedEnemies)
-        {
-            float distance = (enemy.transform.position - transform.position).magnitude;
-            if (distance < minDistance)
-            {
-                nearestEnemy = enemy;
-                minDistance = distance;
-            }
-        }
-
-        return nearestEnemy;
-    }
 
     public void AddExperience(int value)
     {
         experience += value;
-        currentLevel = System.Array.FindLastIndex(experiencesLevels, e => experience >= e);
+        var newLevel = System.Array.FindLastIndex(experiencesLevels, e => experience >= e);
         Debug.Log("Level: " + currentLevel + ", exp: " + experience);
+
+        if (newLevel > currentLevel)
+        {
+            upgradesManager.SuggestToUpgrade();
+            currentLevel = newLevel;
+        }
     }
 
     [ContextMenu("Add Experience")]
